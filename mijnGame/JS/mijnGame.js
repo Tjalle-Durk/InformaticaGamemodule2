@@ -29,6 +29,7 @@ function draw() {
   }
   if (xJager <= 500) {
     yJager = constrain(yJager,0,400);
+    
   }
   if (xJager >=700){
     yJager = constrain(yJager,0,400);
