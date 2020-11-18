@@ -1,7 +1,13 @@
 var xJager = 50;
 var yJager = 400;
 var xProoi = 1800;
-var yProoi = 400
+var yProoi = 400;
+var zwaartekracht = 20;
+var onoff = 1;
+var black = 'black';
+var white = 'lightgray';
+
+
 
 
   function setup() {
@@ -14,7 +20,20 @@ var yProoi = 400
   }
 
 function draw() {
-  background('white');
+  background(background);
+  if (keyIsDown(DOWN_ARROW) && onoff == 1 ){
+    onoff = 2;
+    //white = white;
+    //black = darkkhaki;
+   
+
+  }
+  if (keyIsDown(DOWN_ARROW) && onoff == 2){
+    onoff = 1;
+  }
+
+  
+  
   if (keyIsDown(LEFT_ARROW)) {
     xJager -= 15;
   }
@@ -25,7 +44,7 @@ function draw() {
     yJager -= 10;
   }
   else {
-    yJager += 22;
+    yJager += zwaartekracht;
   }
   if (xJager <= 500) {
     yJager = constrain(yJager,0,400);
@@ -34,6 +53,7 @@ function draw() {
   if (xJager >=700){
     yJager = constrain(yJager,0,400);
   }
+
 
 
 
@@ -53,8 +73,9 @@ function draw() {
   rect(xProoi, yProoi, 75, 50);
   fill('moccasin');
   rect(xJager, yJager, 100, 100);
-  fill('black');
+  fill(black);
   rect(0,500,500,500);
+  fill(white)
   rect(800,500,1120,500)
 }
 
