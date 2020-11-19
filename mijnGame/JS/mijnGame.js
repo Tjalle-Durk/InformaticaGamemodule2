@@ -1,7 +1,13 @@
-var xJager = 50;
+//var Jager{
+  //x: 100,
+  //y: 400,
+//}
+var xJager = 0;
 var yJager = 400;
-var xProoi = 1800;
-var yProoi = 400;
+
+var xSter = 1800;
+var ySter = 400;
+
 var zwaartekracht = 20;
 var onoff = 1;
 var black = 'black';
@@ -11,7 +17,7 @@ var white = 'lightgray';
 
 
   function setup() {
-    canvas = createCanvas(1920, 1080);
+    canvas = createCanvas(1920,1080);
     // canvas.parent('processing');
     textFont("Verdana");
     textSize(140);
@@ -20,13 +26,11 @@ var white = 'lightgray';
   }
 
 function draw() {
-  background(background);
+  background('white');
   if (keyIsDown(DOWN_ARROW) && onoff == 1 ){
     onoff = 2;
-    //white = white;
-    //black = darkkhaki;
-   
-
+    white = white;
+    black = darkkhaki;
   }
   if (keyIsDown(DOWN_ARROW) && onoff == 2){
     onoff = 1;
@@ -41,7 +45,8 @@ function draw() {
     xJager += 15;
   }
   if (keyIsDown(UP_ARROW)) {
-    yJager -= 10;
+    //for(var n = 1; n<=4 ; n++){
+      //yJager -= n*10
   }
   else {
     yJager += zwaartekracht;
@@ -54,25 +59,20 @@ function draw() {
     yJager = constrain(yJager,0,400);
   }
 
-
-
-
-
-
   xJager = constrain(xJager, 0, width - 100);
   yJager = constrain(yJager, 0, height - 100);
 
 
-  if (xJager >= xProoi - 100 && xJager <= xProoi + 75 && yJager >= yProoi - 100 && yJager <= yProoi + 50) {
+  if (xJager >= xSter - 100 && xJager <= xSter + 75 && yJager >= ySter - 100 && yJager <= ySter + 50) {
     fill('chartreuse');
     eindScherm();
   }
   else {
     fill('darkkhaki');
   }
-  rect(xProoi, yProoi, 75, 50);
+  rect(xSter,ySter,75, 50);
   fill('moccasin');
-  rect(xJager, yJager, 100, 100);
+  rect(xJager,yJager, 100, 100);
   fill(black);
   rect(0,500,500,500);
   fill(white)
