@@ -12,13 +12,32 @@ var zwaartekracht = 20;
 var onoff = 1;
 var black = 'black';
 var white = 'lightgray';
+var achtergrond = 'white';
+
+var plateaus = new Array (plateau(0,500,500,500),plateau(800,500,1120,500));
+
+
+class Jager {
+  vallen(){
+    yJager -= 12;
+  }
+
+}
+class plateau {
+  constructor(x,y,w,h){
+    this.x =x;
+    this.y =y;
+    this.w =w;
+    this.h =h;
+  }
+}
+
 
 
 
 
   function setup() {
     canvas = createCanvas(1920,1080);
-    // canvas.parent('processing');
     textFont("Verdana");
     textSize(140);
     noStroke();
@@ -26,14 +45,16 @@ var white = 'lightgray';
   }
 
 function draw() {
-  background('white');
+  background(achtergrond);
   if (keyIsDown(DOWN_ARROW) && onoff == 1 ){
     onoff = 2;
-    white = white;
-    black = darkkhaki;
+    white = 'white';
+    black = 'darkgray';
+    achtergrond = 'black';
   }
   if (keyIsDown(DOWN_ARROW) && onoff == 2){
     onoff = 1;
+   
   }
 
   
@@ -45,7 +66,8 @@ function draw() {
     xJager += 15;
   }
   if (keyIsDown(UP_ARROW)) {
-    //for(var n = 1; n<=4 ; n++){
+    yJager -= 12
+    //for(var n = 1; n <=4 ; n++){
       //yJager -= n*10
   }
   else {
@@ -58,6 +80,10 @@ function draw() {
   if (xJager >=700){
     yJager = constrain(yJager,0,400);
   }
+  //if (xJager >= 500 && xJager <= 700 && yJager <=400){
+  //  xJager = constrain(xJager,500,0);
+  //  xJager = constrain(xJager,700,0);
+  //}
 
   xJager = constrain(xJager, 0, width - 100);
   yJager = constrain(yJager, 0, height - 100);
