@@ -1,7 +1,4 @@
-//var Jager{
-  //x: 100,
-  //y: 400,
-//}
+
 var xJager = 0;
 var yJager = 400;
 
@@ -13,6 +10,7 @@ var onoff = 1;
 var black = 'black';
 var white = 'lightgray';
 var achtergrond = 'white';
+var doodnummer = 0;
 
 var plateaus = new Array (plateau(0,500,500,500),plateau(800,500,1120,500));
 
@@ -44,21 +42,30 @@ class plateau {
     frameRate(50);
   }
 
+
+//Onoff gedoe //
 function draw() {
+  
   background(achtergrond);
-  if (keyIsDown(DOWN_ARROW) && onoff == 1 ){
+  if (keyIsDown(32) && onoff == 1 ){
     onoff = 2;
     white = 'white';
     black = 'darkgray';
     achtergrond = 'black';
+    setInterval(100);
   }
-  if (keyIsDown(DOWN_ARROW) && onoff == 2){
+  else if  (keyIsDown(40) && onoff == 2){
     onoff = 1;
+    white = 'lightgray';
+    black = 'black';
+    achtergrond = 'white';
+    setInterval(100);
+
    
   }
 
   
-  
+  //Movements//
   if (keyIsDown(LEFT_ARROW)) {
     xJager -= 15;
   }
@@ -66,23 +73,32 @@ function draw() {
     xJager += 15;
   }
   if (keyIsDown(UP_ARROW)) {
-    yJager -= 12
-    //for(var n = 1; n <=4 ; n++){
+    yJager -= 12;
+    //for(var n = 1; n < 4 ; n++){
       //yJager -= n*10
   }
+
   else {
-    yJager += zwaartekracht;
+   yJager += zwaartekracht;
   }
-  if (xJager <= 500) {
+
+  //if (xJager >= plateau.x && xJager <= plateau.x + plateau.w && yJager >= plateau.y - 100){
+    //yJager = constrain(yJager,0,400);
+
+
+//}
+
+ //plateaus//
+  if (xJager <= 500 && onoff == 1) {
     yJager = constrain(yJager,0,400);
     
   }
-  if (xJager >=700){
+  if (xJager >=700 && onoff == 2){
     yJager = constrain(yJager,0,400);
   }
   //if (xJager >= 500 && xJager <= 700 && yJager <=400){
-  //  xJager = constrain(xJager,500,0);
-  //  xJager = constrain(xJager,700,0);
+    //xJager = constrain(xJager,500,0);
+    //xJager = constrain(xJager,700,0);
   //}
 
   xJager = constrain(xJager, 0, width - 100);
@@ -93,6 +109,11 @@ function draw() {
     fill('chartreuse');
     eindScherm();
   }
+
+  if (yJager >= height - 120){
+    dood();
+  }
+
   else {
     fill('darkkhaki');
   }
@@ -104,10 +125,17 @@ function draw() {
   fill(white)
   rect(800,500,1120,500)
 }
-
+text(doodnummer,75,250);
+//Doodgaan//
 function eindScherm() {
   background('white');
   fill('black');
-  text("GEVANGEN!", 75, 250);
+  text("dood", 75, 250);
   noLoop();
+}
+function dood() {
+  xJager = 0;
+  yJager = 400;
+  onoff = 1;
+  doodnummer += 1;
 }
