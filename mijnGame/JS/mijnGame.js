@@ -5,6 +5,7 @@ var yJager = 400;
 var xSter = 1800;
 var ySter = 400;
 
+var spatie = 1
 var zwaartekracht = 20;
 var onoff = 1;
 var black = 'black';
@@ -54,7 +55,7 @@ function draw() {
     achtergrond = 'black';
     setInterval(100);
   }
-  else if  (keyIsDown(40) && onoff == 2){
+  else if (keyIsDown(32) && onoff == 2){
     onoff = 1;
     white = 'lightgray';
     black = 'black';
@@ -125,7 +126,9 @@ function draw() {
   fill(white)
   rect(800,500,1120,500)
 }
+fill('blue');
 text(doodnummer,75,250);
+
 //Doodgaan//
 function eindScherm() {
   background('white');
@@ -138,4 +141,12 @@ function dood() {
   yJager = 400;
   onoff = 1;
   doodnummer += 1;
+  text(doodnummer,75,250);
+  white = 'lightgray';
+  black = 'black';
+  achtergrond = 'white';
 }
+
+
+    
+  
